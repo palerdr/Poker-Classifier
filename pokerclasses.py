@@ -11,7 +11,8 @@ ranks = {2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'10', 11:'J'
 streets = {0:'preflop', 1:'flop', 2:'turn', 3:'river'}
 
 class Card:
-    
+    suits = {'c': '♣', 'd': '♦', 'h': '♥', 's': '♠',}
+    ranks = {2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'10', 11:'J', 12:'Q', 13:'K', 14:'A'}
     def __init__(self, rank: int, suit: str):
         self.suit = suit
         self.rank = rank
@@ -26,7 +27,7 @@ class Card:
         return f"{ranks[self.rank]}{suits[self.suit]}"
 
 
-class HoleCards:
+class HoleCards():
     
     def __init__(self, card1: Card, card2: Card):
         self.card1 = card1
@@ -37,7 +38,7 @@ class HoleCards:
         self.connectors = (abs(self.card2.get_rank() - self.card1.get_rank() == 1) or {self.card2.get_rank(), self.card1.get_rank()} == {2,14})
         self.broadways = ((self.card1.get_rank() >= 10) and (self.card2.get_rank() >= 10)) and not self.pair
 
-
+#getters
     def get_cards(self):
         return [self.card1,self.card2]
 
@@ -126,5 +127,5 @@ class StreetStats:
                 f"Passive: {self.passive_freq:.2f}")
 
 if __name__ == "__main__":
-    redaces = HoleCards(Card(0,"h"), Card(0,"d"))
+    redaces = HoleCards(Card(14,"h"), Card(14,"d"))
     print(f"{redaces}")
